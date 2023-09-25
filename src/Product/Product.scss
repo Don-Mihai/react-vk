@@ -1,3 +1,38 @@
-.product {
-    border: 1px solid red;
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .product-image {
+    max-width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+    margin: 8px 0;
+  }
+
+  .product-description {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .product-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 8px;
+  }
 }

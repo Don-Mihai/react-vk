@@ -1,13 +1,14 @@
  import './Product.scss';
  
- const Product = (props) => {
+ const Product = ({product}) => {
 
     return(
-        <div className='product'>
-            <h2>{props.name}</h2>
-            <p className="product-description">{props.price}</p>
-            <button type='submit'>Купить</button>
-        </div>
+        <div className="product-card">
+        <img src={product.image} alt={''} className="product-image" />
+        <h2 className="product-title">{product.title}</h2>
+        <p className="product-description">{product.description}</p>
+        <p className="product-price">${product.price}</p>
+      </div>
     )
 }
 
