@@ -8,7 +8,7 @@ function App() {
         <div>
             {/* <Friends /> */}
             <Button name={'Редактировать профиль'} isVisibleIcon={false} ></Button>
-            <Button name={'Еще'} isVisibleIcon={true}></Button>
+            <Button name={'Еще'} isVisibleIcon={true} ></Button>
             <Button name={'Увеличить число'} isVisibleIcon={false}></Button>
         </div>
     );
