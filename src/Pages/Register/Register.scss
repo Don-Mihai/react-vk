@@ -1,0 +1,11 @@
+.register {
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__vk {
+        flex-grow: 1;
+    }
+    
+}
