@@ -1,0 +1,22 @@
+.component-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #858484;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: lighten($color: #858484, $amount: 5%);
+    }
+
+    &__icon {
+        height: 10px;
+    }
+}
+
+.active {
+    transform: rotate(180deg);
+}
