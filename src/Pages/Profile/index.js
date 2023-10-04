@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 const Profile = ({ profile }) => {
   return (
     <div className="component-profile">
-      <Header></Header>
+      <Header isShowSearch={true}></Header>
     </div>
   );
 };
