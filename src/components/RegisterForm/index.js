@@ -1,27 +1,40 @@
+import { useState } from "react";
 import "./RegisterForm.scss";
+import TextField from "@mui/material/TextField";
+import ClearIcon from "@mui/icons-material/Clear";
 
+const RegisterForm = ({}) => {
+  const [inputText, setInputText] = useState("");
 
-const RegisterForm = ({  }) => {
-    let datas;
-const onRegister = () => {
-    console.log(datas)
-}
-
-
-const onChange = (event) => {
-    datas = event.target.value
-
-}
-
-
-
-
-    return (
-      <div className="component-register-form">
-       <input onChange={onChange} type="text" placeholder="Phone or email"/>
-       <button onClick={onRegister}>Sign in</button>
-      </div>
-    );
+  const onRegister = () => {
+    console.log(inputText);
   };
 
-  export default RegisterForm;
+  const onChange = (e) => {
+    setInputText(e.target.value);
+  };
+
+  const onClearInput = () => {
+    setInputText("");
+  };
+
+  return (
+    <div className="component-register-form">
+      <div className="component-register-form__input-container">
+        <TextField
+          onChange={onChange}
+          value={inputText}
+          label="Phone or email"
+          variant="filled"
+          InputProps={{
+            endAdornment: <ClearIcon onClick={onClearInput} />,
+          }}
+        />
+      </div>
+
+      <button onClick={onRegister}>Sign in</button>
+    </div>
+  );
+};
+
+export default RegisterForm;

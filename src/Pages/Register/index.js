@@ -7,8 +7,9 @@ const Register = ({ register }) => {
   return (
     <div className="register">
       <Header></Header>
-      <div className="register__vk">VK for mobile devices
-      <RegisterForm></RegisterForm>
+      <div className="register__vk">
+        <div className="register__content">VK for mobile devices</div>
+        <RegisterForm></RegisterForm>
       </div>
       <Footer></Footer>
     </div>
