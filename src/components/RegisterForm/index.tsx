@@ -12,7 +12,6 @@ const RegisterForm = ({}) => {
     axios.post('http://localhost:3001/users', {
         name: inputText,
     });
-    
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

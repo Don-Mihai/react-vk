@@ -8,8 +8,8 @@ import Profile from "./Pages/Profile";
 function App() {
   return (
     <>
-      <Register></Register>
-      {/* <Profile></Profile> */}
+      {/* <Register></Register> */}
+      <Profile></Profile>
     </>
   );
 }

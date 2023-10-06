@@ -1,0 +1,37 @@
+.page-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__container {
+        display: flex;
+    }
+
+    &__nav {
+        width: 164px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: 20px;
+    }
+
+    &__sub-content {
+        display: flex;
+    }
+
+    &__background {
+        height: 321px;
+        width: 100%;
+        background-color: grey;
+    }
+
+    &__posts {
+        width: 100%;
+        background-color: green;
+    }
+}
