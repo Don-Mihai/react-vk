@@ -2,15 +2,20 @@ import { useState } from "react";
 import "./RegisterForm.scss";
 import TextField from "@mui/material/TextField";
 import ClearIcon from "@mui/icons-material/Clear";
+import axios from "axios";
 
 const RegisterForm = ({}) => {
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState<string>("");
 
   const onRegister = () => {
     console.log(inputText);
+    axios.post('http://localhost:3001/users', {
+        name: inputText,
+    });
+    
   };
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setInputText(e.target.value);
   };
 
@@ -24,7 +29,7 @@ const RegisterForm = ({}) => {
         <TextField
           onChange={onChange}
           value={inputText}
-          label="Phone or email"
+          label="Имя"
           variant="filled"
           InputProps={{
             endAdornment: <ClearIcon onClick={onClearInput} />,
