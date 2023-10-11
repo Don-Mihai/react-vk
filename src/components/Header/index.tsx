@@ -5,7 +5,9 @@ import axios from "axios";
 import Account from "../Account";
 import VkImg from "./vk";
 import VkImages from "./imgs";
+// @ts-ignore
 import BellLink from "./img/bell.png";
+// @ts-ignore
 import MusicLink from "./img/musical-note.png";
 
 
