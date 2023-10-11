@@ -2,6 +2,11 @@ import { useState } from "react";
 import "./Header.scss";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import Account from "../Account";
+import VkImg from "./vk";
+import VkImages from "./imgs";
+import pictures from "./imgs";
+
 
 export interface User {
   id: number;
@@ -23,10 +28,29 @@ const Header = ({ isShowSearch = false, user }: Props) => {
   return (
       <div className="component-header">
           <div className="container component-header__container">
-              HELLO
-              {isShowSearch ? <TextField id="outlined-basic" label="Outlined" variant="outlined" /> : ''}
+            <div>
+              <VkImg />
+            </div>
+            <div className="component-header__container__wrap">
+            <p className="component-header__container__wrap__vk">ВКОНТАКТЕ</p>  
+            </div>
+                 
+              <div className="component-header__container__wrap-search">
+              {isShowSearch ? <TextField id="outlined-basic" label="Поиск" variant="outlined" /> : ''}
+              </div>
+              {
+                <div>
+                {pictures.map(item => {
+                  return <VkImages pictures={item} />;
+                })}
+              </div>
+              }
+
+
               {user ? user.name : 'Мы вас не узнали'}
               <div onClick={handleDelete}>X</div>
+              <div className="music"></div>
+              <Account></Account>
           </div>
       </div>
   );

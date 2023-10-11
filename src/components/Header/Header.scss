@@ -5,4 +5,26 @@
     &__container {
         display: flex;
     }
+
+    &__wrap{
+        width: 136px;
+        height: 24px;
+    }
+
+    &__vk{
+
+    }
+
+    &__wrap-search{
+        width: 245px;
+        height: 32px;
+    }
+    .component-header__container__wrap__vk{
+        width: 165px;
+        height: 48px;
+    }
+    .music{
+        width: 423px;
+        height: 48px;
+    }
 }
