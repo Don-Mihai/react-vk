@@ -1,5 +1,5 @@
 import "./Header.scss";
-import vkLink from "../../img/vk.png";
+import vkLink from "./img/vk.png";
 
 const Pics = {
   id: 1,

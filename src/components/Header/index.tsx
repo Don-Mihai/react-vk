@@ -5,7 +5,20 @@ import axios from "axios";
 import Account from "../Account";
 import VkImg from "./vk";
 import VkImages from "./imgs";
-import pictures from "./imgs";
+import BellLink from "./img/bell.png";
+import MusicLink from "./img/musical-note.png";
+
+
+export const pictures = [
+  {
+    id: 1,
+    image: BellLink,
+  },
+  {
+    id: 2,
+    image: MusicLink,
+  }
+]
 
 
 export interface User {
