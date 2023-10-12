@@ -1,6 +1,6 @@
 import "./footer.scss";
 
-const Footer = ({ footer }) => {
+const Footer = () => {
   return (
     <div className="footer">
       <a className="footer__vk">О ВКонтакте</a>

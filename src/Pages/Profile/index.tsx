@@ -10,7 +10,7 @@ const Profile = ({}) => {
     const [user, setUser] = useState<User>();
 
     const getUser = async () => {
-        const user: User = (await axios.get('http://localhost:3001/users/3')).data;
+        const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`)).data;
 
         setUser(user);
     };

@@ -14,5 +14,11 @@
     &__content {
         width: 600px;
     }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
     
 }
