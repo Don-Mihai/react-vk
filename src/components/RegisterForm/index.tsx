@@ -5,10 +5,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import { User } from '../Header';
 
 const RegisterForm = ({}) => {
-    const [inputText, setInputText] = useState<string>('');
-    const [lastName, setLastName] = useState<string>('');
+    const [formValues, setFormValues] = useState<Partial<User>>({})
     const [showModal, setShowModal] = useState<boolean>(false);
 
     const onShowModal = () => {
@@ -17,27 +17,23 @@ const RegisterForm = ({}) => {
 
     const onRegister = () => {
         axios.post('http://localhost:3001/users', {
-            name: inputText,
-            lastName: lastName,
+            name: formValues.name,
+            lastName: formValues.lastName,
         });
 
         setShowModal(false)
     };
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setInputText(e.target.value);
+        setFormValues({
+            ...formValues,
+            [e.target.name]: e.target.value,
+        });
     };
 
-    const onChangeLastName = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setLastName(e.target.value);
-    };
 
-    const onClearLastName = () => {
-        setLastName('');
-    };
-
-    const onClearInput = () => {
-        setInputText('');
+    const onClearInput = (key: string) => {
+        setFormValues({...formValues, [key]: ''})
     };
 
     const onClose = () => {
@@ -56,20 +52,22 @@ const RegisterForm = ({}) => {
 
                     <TextField
                         onChange={onChange}
-                        value={inputText}
+                        value={formValues.name}
+                        name='name'
                         label="Имя"
                         variant="filled"
                         InputProps={{
-                            endAdornment: <ClearIcon onClick={onClearInput} sx={{cursor: 'pointer'}} />,
+                            endAdornment: <ClearIcon onClick={() => onClearInput('name')} sx={{cursor: 'pointer'}} />,
                         }}
                     />
                     <TextField
-                        onChange={onChangeLastName}
-                        value={lastName}
+                        onChange={onChange}
+                        value={formValues.lastName}
+                        name='lastName'
                         label="Фамилия"
                         variant="filled"
                         InputProps={{
-                            endAdornment: <ClearIcon onClick={onClearLastName} sx={{cursor: 'pointer'}} />,
+                            endAdornment: <ClearIcon onClick={() => onClearInput('lastName')} sx={{cursor: 'pointer'}} />,
                         }}
                     />
                     <div className="component-register-form__actions">

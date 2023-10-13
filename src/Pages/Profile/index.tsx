@@ -10,11 +10,13 @@ import { Avatar, TextField } from '@mui/material';
 const Profile = ({}) => {
     const [user, setUser] = useState<User>();
     const [isEditMode, setIsEditMode] = useState<boolean>(false)
+    const [formValuesName, setFormValuesName] = useState<string>('')
 
     const getUser = async () => {
         const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`)).data;
 
         setUser(user);
+        setFormValuesName(user?.name)
     };
 
     useEffect(() => {
@@ -22,7 +24,12 @@ const Profile = ({}) => {
     }, []);
 
     const onButtonEdit = () => {
-        setIsEditMode(!isEditMode)
+        // перекинуть на другую страницу
+    }
+
+    const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormValuesName(event.target.value)
+
     }
 
     return (
@@ -47,7 +54,7 @@ const Profile = ({}) => {
                         </div>
                         <div className="page-profile__background-content">
                             <Avatar sx={{height: '100px', width: '100px'}} ></Avatar>
-                            <TextField disabled={!isEditMode} value={user?.name}/>
+                            <h2 className='page-profile__user-title'>{user?.name}</h2>
                             <h2 className='page-profile__user-title'>{user?.lastName}</h2>
 
                             <Button onClick={onButtonEdit} className='page-profile__action' variant='text'>Редактировать профиль</Button>
