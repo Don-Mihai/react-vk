@@ -24,6 +24,7 @@ const EditProfile = ({}) => {
     const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormValuesName(event.target.value)
 
+        // todo: 2) сделать универсалаьную функцию для инпутов (onChange, переделать строку в объект с данными, не забыть написть name)
     }
 
     const onSave = () => {

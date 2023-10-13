@@ -17,6 +17,7 @@ const Profile = ({}) => {
     };
 
     useEffect(() => {
+        // todo: 1) получить массив постов и отобразить его
         // тут получить массив постов
         getUser();
     }, []);
@@ -50,6 +51,7 @@ const Profile = ({}) => {
                             <h2 className='page-profile__user-title'>{user?.name}</h2>
                             <h2 className='page-profile__user-title'>{user?.lastName}</h2>
 
+                            {/* todo: 3) сделать ссылку при помощи react-router-dom чтоб вела на страницу EditProfile (не забыть добавть объект в массиве ссылок) */}
                             <Button onClick={onButtonEdit} className='page-profile__action' variant='text'>Редактировать профиль</Button>
                         </div>
                     </div>
