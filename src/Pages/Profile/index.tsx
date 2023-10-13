@@ -9,27 +9,20 @@ import { Avatar, TextField } from '@mui/material';
 
 const Profile = ({}) => {
     const [user, setUser] = useState<User>();
-    const [isEditMode, setIsEditMode] = useState<boolean>(false)
-    const [formValuesName, setFormValuesName] = useState<string>('')
 
     const getUser = async () => {
         const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`)).data;
 
         setUser(user);
-        setFormValuesName(user?.name)
     };
 
     useEffect(() => {
+        // тут получить массив постов
         getUser();
     }, []);
 
     const onButtonEdit = () => {
         // перекинуть на другую страницу
-    }
-
-    const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormValuesName(event.target.value)
-
     }
 
     return (
@@ -62,7 +55,9 @@ const Profile = ({}) => {
                     </div>
 
                     <div className="page-profile__sub-content">
-                        <div className="page-profile__posts">sfdasdfasfd</div>
+                        <div className="page-profile__posts">{
+                            // тут отобразить массив постов
+                        }</div>
                         <Friends></Friends>
                     </div>
                 </div>

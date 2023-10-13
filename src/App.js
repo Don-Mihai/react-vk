@@ -9,7 +9,7 @@ function App() {
     <>
       {/* <Register></Register> */}
       <Profile></Profile>
-      <EditProfile />
+      {/* <EditProfile /> */}
     </>
   );
 }
