@@ -8,6 +8,7 @@ import Dialog from '@mui/material/Dialog';
 
 const RegisterForm = ({}) => {
     const [inputText, setInputText] = useState<string>('');
+    const [lastName, setLastName] = useState<string>('');
     const [showModal, setShowModal] = useState<boolean>(false);
 
     const onShowModal = () => {
@@ -17,6 +18,7 @@ const RegisterForm = ({}) => {
     const onRegister = () => {
         axios.post('http://localhost:3001/users', {
             name: inputText,
+            lastName: lastName,
         });
 
         setShowModal(false)
@@ -24,6 +26,14 @@ const RegisterForm = ({}) => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setInputText(e.target.value);
+    };
+
+    const onChangeLastName = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setLastName(e.target.value);
+    };
+
+    const onClearLastName = () => {
+        setLastName('');
     };
 
     const onClearInput = () => {
@@ -51,6 +61,15 @@ const RegisterForm = ({}) => {
                         variant="filled"
                         InputProps={{
                             endAdornment: <ClearIcon onClick={onClearInput} sx={{cursor: 'pointer'}} />,
+                        }}
+                    />
+                    <TextField
+                        onChange={onChangeLastName}
+                        value={lastName}
+                        label="Фамилия"
+                        variant="filled"
+                        InputProps={{
+                            endAdornment: <ClearIcon onClick={onClearLastName} sx={{cursor: 'pointer'}} />,
                         }}
                     />
                     <div className="component-register-form__actions">

@@ -26,6 +26,7 @@ export const pictures = [
 export interface User {
   id: number;
   name: string;
+  lastName: string;
 }
 
 interface Props {

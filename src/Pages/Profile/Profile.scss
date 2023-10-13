@@ -28,6 +28,30 @@
         height: 321px;
         width: 100%;
         background-color: grey;
+
+        &-content {
+            display: flex;
+            align-items: center;
+        }
+
+        &-wrap {
+            display: flex;
+            align-items: center;
+            height: 210px;
+            overflow: hidden;
+        }
+
+        &-img {
+            width: 100%;
+        }
+    }
+
+    &__user-title {
+        font-size: 28px;
+    }
+
+    &__action {
+        margin-left: auto!important;
     }
 
     &__posts {
