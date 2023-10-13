@@ -6,6 +6,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import { User } from '../Header';
+import { Link } from 'react-router-dom';
 
 const RegisterForm = ({}) => {
     const [formValues, setFormValues] = useState<Partial<User>>({})
@@ -75,7 +76,7 @@ const RegisterForm = ({}) => {
                             Отменить
                         </Button>
                         <Button onClick={onRegister} variant="contained">
-                            Регистрироваться
+                            <Link to={'profile'}>Регистрироваться</Link>
                         </Button>
                     </div>
                 </div>
