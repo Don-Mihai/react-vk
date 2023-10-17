@@ -6,23 +6,38 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Friends from '../../modules/Friends';
 import { Avatar, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = ({}) => {
     const [user, setUser] = useState<User>();
+    const [posts, setPosts] = useState([]);
+    const navigate = useNavigate()
+
 
     const getUser = async () => {
         const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`)).data;
 
+
         setUser(user);
     };
 
+    
+    const getPosts = async () => {
+        const posts: any = (await axios.get(`http://localhost:3001/posts`)).data;
+        
+        setPosts(posts);
+    }
+
     useEffect(() => {
+       
         // todo: 1) получить массив постов и отобразить его
         // тут получить массив постов
         getUser();
+        getPosts()
     }, []);
 
     const onButtonEdit = () => {
+        navigate('editProfile')
         // перекинуть на другую страницу
     }
 
@@ -57,9 +72,12 @@ const Profile = ({}) => {
                     </div>
 
                     <div className="page-profile__sub-content">
-                        <div className="page-profile__posts">{
-                            // тут отобразить массив постов
-                        }</div>
+                        <div className="page-profile__posts">
+                            {posts.map((item) => {
+                                return <div>{item.text}</div>
+                            })} 
+                            
+                        </div>
                         <Friends></Friends>
                     </div>
                 </div>

@@ -11,9 +11,9 @@ const AuthForm = ({}) => {
 
     const onAuth = async () => {
       const users: User[] = (await axios.get('http://localhost:3001/users')).data
-
+      console.log(users)
       const foundedUser: User | undefined = users.find(user => user.name === inputText)
-
+      console.log(foundedUser)
       if (foundedUser) {
         localStorage.setItem('userId', String(foundedUser.id))
       }
