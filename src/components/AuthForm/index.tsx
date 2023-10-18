@@ -5,9 +5,12 @@ import ClearIcon from "@mui/icons-material/Clear";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { User } from "../Header";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = ({}) => {
   const [inputText, setInputText] = useState<string>("");
+
+  const navigate = useNavigate()
 
     const onAuth = async () => {
       const users: User[] = (await axios.get('http://localhost:3001/users')).data
@@ -16,6 +19,7 @@ const AuthForm = ({}) => {
 
       if (foundedUser) {
         localStorage.setItem('userId', String(foundedUser.id))
+        navigate('profile')
       }
     };
 

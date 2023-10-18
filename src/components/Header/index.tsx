@@ -1,75 +1,59 @@
-import { useState } from "react";
-import "./Header.scss";
-import TextField from "@mui/material/TextField";
-import axios from "axios";
-import Account from "../Account";
-import VkImg from "./vk";
-import VkImages from "./imgs";
+import { useState } from 'react';
+import './Header.scss';
+import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import Account from '../Account';
 // @ts-ignore
-import BellLink from "./img/bell.png";
+import Vk from './img/vk.png';
 // @ts-ignore
-import MusicLink from "./img/musical-note.png";
-
+import BellLink from './img/bell.png';
+// @ts-ignore
+import MusicLink from './img/musical-note.png';
+import Avatar from '@mui/material/Avatar';
 
 export const pictures = [
-  {
-    id: 1,
-    image: BellLink,
-  },
-  {
-    id: 2,
-    image: MusicLink,
-  }
-]
-
+    {
+        id: 1,
+        image: BellLink,
+    },
+    {
+        id: 2,
+        image: MusicLink,
+    },
+];
 
 export interface User {
-  id: number;
-  name: string;
-  lastName: string;
+    id: number;
+    name: string;
+    lastName: string;
 }
 
 interface Props {
-  isShowSearch?: boolean;
-  user?: User;
+    isShowSearch?: boolean;
+    user?: User;
 }
 
 const Header = ({ isShowSearch = false, user }: Props) => {
 
+    return (
+        <div className="component-header">
+            <div className="container component-header__container">
+                <div className="component-header__logo">
+                    <img className="component-header__logo-img" src={Vk}></img>
+                    <span className="component-header__logo-text">ВКОНТАКТЕ</span>
+                </div>
 
-  const handleDelete = () => {
-    axios.delete('http://localhost:3001/users/2')
-  }
+                {isShowSearch && (
+                    <div className="component-header__search">
+                        <TextField size='small' id="outlined-basic" label="Поиск" variant="outlined" />
+                    </div>
+                )}
 
-  return (
-      <div className="component-header">
-          <div className="container component-header__container">
-            <div>
-              <VkImg />
+                <div className="music"></div>
+                {user && <Avatar className='component-header__avatar'>{user?.name ? user?.name[0] : ''}{user.lastName ? user?.lastName[0] : ''}</Avatar> }
             </div>
-            <div className="component-header__container__wrap">
-            <p className="component-header__container__wrap__vk">ВКОНТАКТЕ</p>  
-            </div>
-                 
-              <div className="component-header__container__wrap-search">
-              {isShowSearch ? <TextField id="outlined-basic" label="Поиск" variant="outlined" /> : ''}
-              </div>
-              {
-                <div>
-                {pictures.map(item => {
-                  return <VkImages pictures={item} />;
-                })}
-              </div>
-              }
-
-
-              {user ? user.name : 'Мы вас не узнали'}
-              <div onClick={handleDelete}>X</div>
-              <div className="music"></div>
-              <Account></Account>
-          </div>
-      </div>
-  );
+        </div>
+    );
 };
 
 export default Header;

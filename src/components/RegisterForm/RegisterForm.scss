@@ -3,8 +3,9 @@
     flex-direction: column;
     gap: 16px;
     width: 320px;
-    background-color: rgb(184, 182, 182);
     padding: 32px 24px;
+    border-radius: 8px;
+    background-color: rgb(184, 182, 182);
 
     &__title {
         font-size: 34px;

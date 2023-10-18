@@ -11,7 +11,7 @@ const Profile = ({}) => {
     const [user, setUser] = useState<User>();
 
     const getUser = async () => {
-        const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`)).data;
+        const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
 
         setUser(user);
     };
@@ -43,23 +43,29 @@ const Profile = ({}) => {
                 </nav>
                 <div className="page-profile__content">
                     <div className="page-profile__background">
-                        <div className='page-profile__background-wrap'>
-                            <img src='/028.jpg' className="page-profile__background-img" />
+                        <div className="page-profile__background-wrap">
+                            <img src="/028.jpg" className="page-profile__background-img" />
                         </div>
                         <div className="page-profile__background-content">
-                            <Avatar sx={{height: '100px', width: '100px'}} ></Avatar>
-                            <h2 className='page-profile__user-title'>{user?.name}</h2>
-                            <h2 className='page-profile__user-title'>{user?.lastName}</h2>
+                            <Avatar className="page-profile__background-avatar" sx={{ height: '100px', width: '100px' }}></Avatar>
+                            <div className="page-profile__user-wrap">
+                                <h2 className="page-profile__user-title">{user?.name}</h2>
+                                <h2 className="page-profile__user-title">{user?.lastName}</h2>
+                            </div>
 
                             {/* todo: 3) сделать ссылку при помощи react-router-dom чтоб вела на страницу EditProfile (не забыть добавть объект в массиве ссылок) */}
-                            <Button onClick={onButtonEdit} className='page-profile__action' variant='text'>Редактировать профиль</Button>
+                            <Button onClick={onButtonEdit} className="page-profile__action" variant="text">
+                                Редактировать профиль
+                            </Button>
                         </div>
                     </div>
 
                     <div className="page-profile__sub-content">
-                        <div className="page-profile__posts">{
-                            // тут отобразить массив постов
-                        }</div>
+                        <div className="page-profile__posts">
+                            {
+                                // тут отобразить массив постов
+                            }
+                        </div>
                         <Friends></Friends>
                     </div>
                 </div>

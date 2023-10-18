@@ -25,19 +25,28 @@
     }
 
     &__background {
-        height: 321px;
+        display: flex;
+        flex-direction: column;
+        height: 300px;
         width: 100%;
-        background-color: grey;
+        background-color: rgb(37, 36, 36);
 
         &-content {
+            position: relative;
             display: flex;
             align-items: center;
+            height: 150px;
+            padding: 20px;
+        }
+
+        &-avatar {
+            position: absolute!important;
+            top: -50px!important;
         }
 
         &-wrap {
             display: flex;
             align-items: center;
-            height: 210px;
             overflow: hidden;
         }
 
@@ -46,8 +55,15 @@
         }
     }
 
-    &__user-title {
-        font-size: 28px;
+    &__user {
+
+        &-wrap {
+            margin-left: 100px;
+        }
+        &-title {
+            font-size: 28px;
+        }
+
     }
 
     &__action {
