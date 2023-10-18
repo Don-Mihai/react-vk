@@ -50,7 +50,7 @@ const Header = ({ isShowSearch = false, user }: Props) => {
                 )}
 
                 <div className="music"></div>
-                {user && <Avatar className='component-header__avatar'>{user?.name ? user?.name[0] : ''}{user.lastName ? user?.lastName[0] : ''}</Avatar> }
+                {user && <Avatar className='component-header__avatar'>{user?.name ? user?.name[0] : ''}{user?.lastName ? user?.lastName[0] : ''}</Avatar> }
             </div>
         </div>
     );
