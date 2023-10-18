@@ -5,11 +5,11 @@ import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import { User } from '../Header';
+import { IUser } from '../Header';
 import { Link } from 'react-router-dom';
 
 const RegisterForm = ({}) => {
-    const [formValues, setFormValues] = useState<Partial<User>>({})
+    const [formValues, setFormValues] = useState<Partial<IUser>>({})
     const [showModal, setShowModal] = useState<boolean>(false);
 
     const onShowModal = () => {

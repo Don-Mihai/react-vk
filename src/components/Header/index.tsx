@@ -22,15 +22,24 @@ export const pictures = [
     },
 ];
 
-export interface User {
+export interface IUser {
     id: number;
     name: string;
-    lastName: string;
+    lastName?: string;
+    email?: string;
+    birthDate?: Date | string;
+    isOnline?: boolean;
+}
+
+export interface IPost {
+    id: number;
+    title: string;
+    text: string;
 }
 
 interface Props {
     isShowSearch?: boolean;
-    user?: User;
+    user?: IUser;
 }
 
 const Header = ({ isShowSearch = false, user }: Props) => {

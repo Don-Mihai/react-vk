@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import ClearIcon from "@mui/icons-material/Clear";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import { User } from "../Header";
+import { IUser } from "../Header";
 import { useNavigate } from "react-router-dom";
 
 const AuthForm = ({}) => {
@@ -13,9 +13,9 @@ const AuthForm = ({}) => {
   const navigate = useNavigate()
 
     const onAuth = async () => {
-      const users: User[] = (await axios.get('http://localhost:3001/users')).data
+      const users: IUser[] = (await axios.get('http://localhost:3001/users')).data
 
-      const foundedUser: User | undefined = users.find(user => user.name === inputText)
+      const foundedUser: IUser | undefined = users.find(user => user.name === inputText)
 
       if (foundedUser) {
         localStorage.setItem('userId', String(foundedUser.id))

@@ -1,34 +1,41 @@
 import { useEffect, useState } from 'react';
 import './Profile.scss';
-import Header, { User } from '../../components/Header';
+import Header, { IPost, IUser } from '../../components/Header';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Friends from '../../modules/Friends';
 import { Avatar, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Post from '../../components/Post';
 
 const Profile = ({}) => {
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<IUser>();
+    const [posts, setPosts] = useState<IPost[]>([]);
 
     const navigate = useNavigate()
 
     const getUser = async () => {
-        const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
+        const user: IUser = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
 
         setUser(user);
         
     };
 
+    const getPosts = async () => {
+        const posts: IPost[] = (await axios.get('http://localhost:3001/posts/')).data
+
+        setPosts(posts)
+    }
+
+
     useEffect(() => {
-        // todo: 1) получить массив постов и отобразить его
-        // тут получить массив постов
+        getPosts()
         getUser();
     }, []);
 
     const onButtonEdit = () => {
         navigate('/edit')
-        // перекинуть на другую страницу
     }
 
     return (
@@ -58,7 +65,6 @@ const Profile = ({}) => {
                                 <h2 className="page-profile__user-title">{user?.lastName}</h2>
                             </div>
 
-                            {/* todo: 3) сделать ссылку при помощи react-router-dom чтоб вела на страницу EditProfile (не забыть добавть объект в массиве ссылок) */}
                             <Button onClick={onButtonEdit} className="page-profile__action" variant="text">
                                 Редактировать профиль
                             </Button>
@@ -68,7 +74,9 @@ const Profile = ({}) => {
                     <div className="page-profile__sub-content">
                         <div className="page-profile__posts">
                             {
-                                // тут отобразить массив постов
+                                posts.map((post) => {
+                                    return <Post key={post?.id} post={post} />
+                                })
                             }
                         </div>
                         <Friends></Friends>
