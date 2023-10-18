@@ -6,14 +6,18 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Friends from '../../modules/Friends';
 import { Avatar, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = ({}) => {
     const [user, setUser] = useState<User>();
+
+    const navigate = useNavigate()
 
     const getUser = async () => {
         const user: User = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
 
         setUser(user);
+        
     };
 
     useEffect(() => {
@@ -23,6 +27,7 @@ const Profile = ({}) => {
     }, []);
 
     const onButtonEdit = () => {
+        navigate('/edit')
         // перекинуть на другую страницу
     }
 
