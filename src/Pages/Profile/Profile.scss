@@ -23,6 +23,8 @@
 
     &__sub-content {
         display: flex;
+        align-items: flex-start;
+        gap: 30px;
     }
 
     &__background {
@@ -30,7 +32,10 @@
         flex-direction: column;
         height: 300px;
         width: 100%;
-        background-color: rgb(37, 36, 36);
+        border-radius: 8px;
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: 0 0 2px #303639;
 
         &-content {
             position: relative;

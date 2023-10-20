@@ -1,11 +1,16 @@
+import { IUser } from "../Header";
 import "./Friend.scss";
 import Avatar from "@mui/material/Avatar";
-const Friend = ({ friend }) => {
+
+interface Props {
+  friend: IUser;
+}
+
+const Friend = ({friend}: Props) => {
   return (
     <div className="friend">
-      <Avatar>{friend.name[0]}</Avatar>
+      <Avatar sx={{height: '60px', width: '60px'}}>{friend.name[0]}</Avatar>
       <h2 className="friend__name">{friend.name}</h2>
-      <h2 className="friend__age">{friend.age}</h2>
     </div>
   );
 };
