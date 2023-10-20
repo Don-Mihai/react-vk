@@ -56,7 +56,7 @@ const Profile = ({}) => {
                 <div className="page-profile__content">
                     <div className="page-profile__background">
                         <div className="page-profile__background-wrap">
-                            <img src="/028.jpg" className="page-profile__background-img" />
+                            <img src="/bg.jpeg" className="page-profile__background-img" />
                         </div>
                         <div className="page-profile__background-content">
                             <Avatar className="page-profile__background-avatar" sx={{ height: '100px', width: '100px' }}></Avatar>
