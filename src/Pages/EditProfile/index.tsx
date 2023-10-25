@@ -5,6 +5,9 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Avatar, TextField } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { decrement, increment } from '../../redux/Counter';
 
 const initialUser: IUser = {
     id: 0,
@@ -17,6 +20,9 @@ const initialUser: IUser = {
 const EditProfile = ({}) => {
     const [user, setUser] = useState<IUser>(initialUser);
     const [formValues, setFormValues] = useState<Partial<IUser>>(initialUser)
+    const count = useSelector((state: RootState) => state.counter.value)
+
+    const dispatch = useDispatch()
 
     const getUser = async () => {
         const user: IUser = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`)).data;
@@ -41,14 +47,24 @@ const EditProfile = ({}) => {
     //    getUser()
     }
 
-    console.log("user", user)
-    console.log('formValues', formValues)
+    const onAdd = () => {
+        dispatch(increment()) 
+    }
+
+    const onReduce = () => {
+        dispatch(decrement())
+    }
 
     return (
         <div className="page-edit">
             <Header isShowSearch={true} user={user}></Header>
             <div className="page-edit__container container">
                 <nav className="page-edit__nav">
+                    <div>
+                        <button onClick={onAdd}>+</button>
+                        {count}
+                        <button onClick={onReduce}>-</button>
+                    </div>
                     <Button variant="text" startIcon={<CloudUploadIcon />}>
                         Upload file
                     </Button>

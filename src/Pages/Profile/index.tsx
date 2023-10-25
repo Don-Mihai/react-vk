@@ -8,12 +8,17 @@ import Friends from '../../modules/Friends';
 import { Avatar, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Post from '../../components/Post';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { decrement, increment } from '../../redux/Counter';
 
 const Profile = ({}) => {
     const [user, setUser] = useState<IUser>();
     const [posts, setPosts] = useState<IPost[]>([]);
+    const count = useSelector((state: RootState) => state.counter.value)
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const getUser = async () => {
         const user: IUser = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
@@ -38,11 +43,24 @@ const Profile = ({}) => {
         navigate('/edit')
     }
 
+    const onAdd = () => {
+        dispatch(increment()) 
+    }
+
+    const onReduce = () => {
+        dispatch(decrement())
+    }
+
     return (
         <div className="page-profile">
             <Header isShowSearch={true} user={user}></Header>
             <div className="page-profile__container container">
                 <nav className="page-profile__nav">
+                    <div>
+                        <button onClick={onAdd}>+</button>
+                        {count}
+                        <button onClick={onReduce}>-</button>
+                    </div>
                     <Button variant="text" startIcon={<CloudUploadIcon />}>
                         Upload file
                     </Button>

@@ -9,6 +9,8 @@ import "./App.scss";
 import Friends from "./modules/Friends";
 import Posts from "./components/Posts";
 import EditProfile from "./Pages/EditProfile";
+import {store} from './redux/store';
+import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -33,4 +35,8 @@ const routes = createBrowserRouter([
   },
 ]);
 
-root.render(<RouterProvider router={routes} />);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={routes} />
+  </Provider>
+);
