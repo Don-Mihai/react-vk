@@ -11,10 +11,12 @@ import Post from '../../components/Post';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { decrement, increment } from '../../redux/Counter';
+import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone'
 
 const Profile = ({}) => {
     const [user, setUser] = useState<IUser>();
     const [posts, setPosts] = useState<IPost[]>([]);
+    const [isShow, setIsShow] = useState<boolean>(false);
     const count = useSelector((state: RootState) => state.counter.value)
 
     const navigate = useNavigate()
@@ -51,6 +53,10 @@ const Profile = ({}) => {
         dispatch(decrement())
     }
 
+    const onEnter = () => {
+        setIsShow(true)
+    }
+
     return (
         <div className="page-profile">
             <Header isShowSearch={true} user={user}></Header>
@@ -73,9 +79,19 @@ const Profile = ({}) => {
                 </nav>
                 <div className="page-profile__content">
                     <div className="page-profile__background">
-                        <div className="page-profile__background-wrap">
+                        <div onMouseEnter={onEnter} className="page-profile__background-wrap">
                             <img src="/bg.jpeg" className="page-profile__background-img" />
+
+                            {/* <DropzoneArea
+                            acceptedFiles={['image/*', 'video/*', 'application/*']}
+                            onChange={() => {}}
+                            showFileNames
+                            dropzoneText="Arraste o arquivo aqui ou clique para selecionar"
+                            showAlerts={false}
+                            filesLimit={20}
+                        /> */}
                         </div>
+
                         <div className="page-profile__background-content">
                             <Avatar className="page-profile__background-avatar" sx={{ height: '100px', width: '100px' }}></Avatar>
                             <div className="page-profile__user-wrap">
@@ -91,11 +107,10 @@ const Profile = ({}) => {
 
                     <div className="page-profile__sub-content">
                         <div className="page-profile__posts">
-                            {
-                                posts.map((post) => {
-                                    return <Post key={post?.id} post={post} />
-                                })
-                            }
+                            {isShow ? <div>Вот тот самый компонент</div> : ''}
+                            {posts.map(post => {
+                                return <Post key={post?.id} post={post} />;
+                            })}
                         </div>
                         <Friends></Friends>
                     </div>

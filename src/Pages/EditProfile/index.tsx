@@ -55,6 +55,14 @@ const EditProfile = ({}) => {
         dispatch(decrement())
     }
 
+    
+    // const handleSendFiles = (files: Blob) => {
+    //     const formData = new FormData();
+    //     formData.append('filedata', files as Blob);
+
+    //     axios.post(BASE_URL + `/uploads?userId=${currentUser.id}`, formData).then(fetchData);
+    // };
+
     return (
         <div className="page-edit">
             <Header isShowSearch={true} user={user}></Header>
