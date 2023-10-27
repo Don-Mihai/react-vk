@@ -57,6 +57,10 @@ const Profile = ({}) => {
         setIsShow(true)
     }
 
+    const onLeave = () => {
+        setIsShow(false)
+    }
+
     return (
         <div className="page-profile">
             <Header isShowSearch={true} user={user}></Header>
@@ -79,17 +83,20 @@ const Profile = ({}) => {
                 </nav>
                 <div className="page-profile__content">
                     <div className="page-profile__background">
-                        <div onMouseEnter={onEnter} className="page-profile__background-wrap">
+                        <div onMouseEnter={onEnter} onMouseLeave={onLeave} className="page-profile__background-wrap">
                             <img src="/bg.jpeg" className="page-profile__background-img" />
-
-                            {/* <DropzoneArea
-                            acceptedFiles={['image/*', 'video/*', 'application/*']}
-                            onChange={() => {}}
-                            showFileNames
-                            dropzoneText="Arraste o arquivo aqui ou clique para selecionar"
-                            showAlerts={false}
-                            filesLimit={20}
-                        /> */}
+                            {isShow ? (
+                                <DropzoneArea
+                                    acceptedFiles={['image/*', 'video/*', 'application/*']}
+                                    onChange={() => {}}
+                                    showFileNames
+                                    dropzoneText="Arraste o arquivo aqui ou clique para selecionar"
+                                    showAlerts={false}
+                                    filesLimit={20}
+                                />
+                            ) : (
+                                ''
+                            )}
                         </div>
 
                         <div className="page-profile__background-content">
@@ -107,7 +114,7 @@ const Profile = ({}) => {
 
                     <div className="page-profile__sub-content">
                         <div className="page-profile__posts">
-                            {isShow ? <div>Вот тот самый компонент</div> : ''}
+                            
                             {posts.map(post => {
                                 return <Post key={post?.id} post={post} />;
                             })}
