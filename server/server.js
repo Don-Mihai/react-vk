@@ -21,15 +21,12 @@ app.post(
     let filedata = req.file;
     let userId = req.query?.userId;
 
-    const user = await User.findOneAndUpdate(
-      { id: userId },
-      { $set: { imageUrl: filedata.filename } },
-      { returnDocument: "after" },
-    );
+    console.log(filedata);
 
     if (!filedata) res.send("Ошибка при загрузке файла");
     else {
       // Сохраняем путь до изображения в файле db.json
+      console.log(userId);
       saveImageData(userId, filedata.filename);
 
       res.send(user);
@@ -58,6 +55,6 @@ function saveImageData(userId, imageUrl) {
   fs.writeFileSync(dbFilePath, JSON.stringify(data, null, 2), "utf8");
 }
 
-app.listen(6000, () => {
-  console.log("Server is running on port 3000");
+app.listen(3003, () => {
+  console.log("Server is running on port 6000");
 });

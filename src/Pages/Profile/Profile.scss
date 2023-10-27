@@ -51,6 +51,7 @@
         }
 
         &-wrap {
+            position: relative;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -82,4 +83,11 @@
         gap: 20px;
         width: 100%;
     }
+
+    .MuiDropzoneArea-root {
+        position: absolute;
+        min-height: auto;
+        height: 100%;
+    }
 }
+

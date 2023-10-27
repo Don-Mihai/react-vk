@@ -61,6 +61,21 @@ const Profile = ({}) => {
         setIsShow(false)
     }
 
+    const sendImage = (files: File[]) => {
+        const formData = new FormData();
+        formData.append('filedata', files[0])
+        
+        // axios.post(`http://localhost:3003/uploads?userId=${user?.id}`, formData)
+    }
+
+    // const handleSendFiles = (files: Blob) => {
+        
+    //     const formData = new FormData();
+    //     formData.append('filedata', files as Blob);
+
+    //     axios.post(BASE_URL + `/uploads?userId=${currentUser.id}`, formData).then(fetchData);
+    // };
+
     return (
         <div className="page-profile">
             <Header isShowSearch={true} user={user}></Header>
@@ -83,12 +98,13 @@ const Profile = ({}) => {
                 </nav>
                 <div className="page-profile__content">
                     <div className="page-profile__background">
-                        <div onMouseEnter={onEnter} onMouseLeave={onLeave} className="page-profile__background-wrap">
+                        <div onDragOver={onEnter} onMouseLeave={onLeave} className="page-profile__background-wrap">
                             <img src="/bg.jpeg" className="page-profile__background-img" />
                             {isShow ? (
                                 <DropzoneArea
                                     acceptedFiles={['image/*', 'video/*', 'application/*']}
-                                    onChange={() => {}}
+                                    // onChange={sendImage}
+                                    onDrop={sendImage}
                                     showFileNames
                                     dropzoneText="Arraste o arquivo aqui ou clique para selecionar"
                                     showAlerts={false}

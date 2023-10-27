@@ -10,6 +10,9 @@ import BellLink from './img/bell.png';
 // @ts-ignore
 import MusicLink from './img/musical-note.png';
 import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 
 export const pictures = [
     {
@@ -43,6 +46,23 @@ interface Props {
 }
 
 const Header = ({ isShowSearch = false, user }: Props) => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    const navigate = useNavigate()
+
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const logout = () => {
+        handleClose()
+        localStorage.removeItem('userId')
+        navigate('/')
+    }
 
     return (
         <div className="component-header">
@@ -54,12 +74,32 @@ const Header = ({ isShowSearch = false, user }: Props) => {
 
                 {isShowSearch && (
                     <div className="component-header__search">
-                        <TextField size='small' id="outlined-basic" label="Поиск" variant="outlined" />
+                        <TextField size="small" id="outlined-basic" label="Поиск" variant="outlined" />
                     </div>
                 )}
 
                 <div className="music"></div>
-                {user && <Avatar className='component-header__avatar'>{user?.name ? user?.name[0] : ''}{user?.lastName ? user?.lastName[0] : ''}</Avatar> }
+                {user && (
+                    <>
+                        <div onClick={handleClick}>
+                            <Avatar className="component-header__avatar">
+                                {user?.name ? user?.name[0] : ''}
+                                {user?.lastName ? user?.lastName[0] : ''}
+                            </Avatar>
+                        </div>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={logout}>Выйти</MenuItem>
+                        </Menu>
+                    </>
+                )}
             </div>
         </div>
     );

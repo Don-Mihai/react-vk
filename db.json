@@ -2,10 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Михай",
-      "lastName": "Палиенко",
-      "email": "",
-      "birthDate": ""
+      "name": "Mihai",
+      "lastName": "Palienko",
+      "email": "mihai807@mail.ru",
+      "birthDate": "19.11.1999"
     },
     {
       "name": "Артос",
