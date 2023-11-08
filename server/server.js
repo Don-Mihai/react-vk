@@ -2,12 +2,15 @@ const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(express.static("./uploads"));
 
 const storageConfig = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads");
+    cb(null, "./public/uploads");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -21,15 +24,13 @@ app.post(
     let filedata = req.file;
     let userId = req.query?.userId;
 
-    console.log(filedata);
-
     if (!filedata) res.send("Ошибка при загрузке файла");
     else {
       // Сохраняем путь до изображения в файле db.json
-      console.log(userId);
+      console.log("userId", userId);
       saveImageData(userId, filedata.filename);
 
-      res.send(user);
+      res.send(filedata.filename);
     }
   },
 );
@@ -49,12 +50,22 @@ function saveImageData(userId, imageUrl) {
   }
 
   // Обновляем данные в объекте
-  data[userId] = imageUrl;
+  const newData = {
+    ...data,
+    users: data?.users?.map((user) => {
+      if (user.id === Number(userId)) {
+        return {
+          ...user,
+          imageUrl,
+        };
+      } else return user;
+    }),
+  };
 
   // Записываем обновленные данные обратно в файл
-  fs.writeFileSync(dbFilePath, JSON.stringify(data, null, 2), "utf8");
+  fs.writeFileSync(dbFilePath, JSON.stringify(newData, null, 2), "utf8");
 }
 
 app.listen(3003, () => {
-  console.log("Server is running on port 6000");
+  console.log("Server is running on port 3003");
 });

@@ -65,7 +65,7 @@ const Profile = ({}) => {
         const formData = new FormData();
         formData.append('filedata', files[0])
         
-        // axios.post(`http://localhost:3003/uploads?userId=${user?.id}`, formData)
+        axios.post(`http://localhost:3003/uploads?userId=${user?.id}`, formData)
     }
 
     // const handleSendFiles = (files: Blob) => {
@@ -99,7 +99,7 @@ const Profile = ({}) => {
                 <div className="page-profile__content">
                     <div className="page-profile__background">
                         <div onDragOver={onEnter} onMouseLeave={onLeave} className="page-profile__background-wrap">
-                            <img src="/bg.jpeg" className="page-profile__background-img" />
+                            <img src={`uploads/${user?.imageUrl}`} className="page-profile__background-img" />
                             {isShow ? (
                                 <DropzoneArea
                                     acceptedFiles={['image/*', 'video/*', 'application/*']}

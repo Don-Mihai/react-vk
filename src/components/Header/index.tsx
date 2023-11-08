@@ -32,6 +32,7 @@ export interface IUser {
     email?: string;
     birthDate?: Date | string;
     isOnline?: boolean;
+    imageUrl?: string;
 }
 
 export interface IPost {
