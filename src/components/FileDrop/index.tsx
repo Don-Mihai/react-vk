@@ -1,9 +1,6 @@
 import './FileDrop.scss';
-import bemCreator from '../bemCreator';
 import React, { useRef, useState, MutableRefObject } from 'react';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-
-const cn = bemCreator('component-file-drop');
 
 interface Props {
     children: any;
@@ -55,12 +52,12 @@ const FileDrop = ({ children, borderRadius, onSendFiles }: Props) => {
     };
 
     return (
-        <form className={cn('')} onMouseEnter={() => setDragActive(true)} onDragEnter={handleDrag}>
+        <form className={'component-file-drop'} onMouseEnter={() => setDragActive(true)} onDragEnter={handleDrag}>
             {children}
-            <input ref={inputRef} onChange={inputChangeHandler} type="file" className={cn('input')} multiple={true} accept="image/*" />
+            <input ref={inputRef} onChange={inputChangeHandler} type="file" className={'component-file-drop__input'} multiple={true} accept="image/*" />
             {dragActive && (
                 <div
-                    className={cn('drag-element')}
+                    className={'component-file-drop__drag-element'}
                     style={{ borderRadius: borderRadius ? borderRadius : '50%' }}
                     onClick={handleClick}
                     onMouseLeave={() => setDragActive(false)}
