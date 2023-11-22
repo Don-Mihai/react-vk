@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { decrement, increment } from '../../redux/Counter';
 import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone'
+import { Link } from 'react-router-dom';
 
 const Profile = ({}) => {
     const [user, setUser] = useState<IUser>();
@@ -86,9 +87,11 @@ const Profile = ({}) => {
                         {count}
                         <button onClick={onReduce}>-</button>
                     </div>
-                    <Button variant="text" startIcon={<CloudUploadIcon />}>
-                        Upload file
-                    </Button>
+                    <Link to={'/profile'}>
+                        <Button variant="text" startIcon={<CloudUploadIcon />}>
+                            Upload file
+                        </Button>
+                    </Link>
                     <Button variant="text" startIcon={<CloudUploadIcon />}>
                         Upload file
                     </Button>
@@ -130,7 +133,6 @@ const Profile = ({}) => {
 
                     <div className="page-profile__sub-content">
                         <div className="page-profile__posts">
-                            
                             {posts.map(post => {
                                 return <Post key={post?.id} post={post} />;
                             })}

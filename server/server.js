@@ -35,6 +35,24 @@ app.post(
   },
 );
 
+app.post(
+  "/upload-avatar",
+  multer({ storage: storageConfig }).single("filedata"),
+  async function (req, res) {
+    let filedata = req.file;
+    let userId = req.query?.userId;
+
+    if (!filedata) res.send("Ошибка при загрузке файла");
+    else {
+      // Сохраняем путь до изображения в файле db.json
+      console.log("userId", userId);
+      saveImageAvatar(userId, filedata.filename);
+
+      res.send(filedata.filename);
+    }
+  },
+);
+
 // Функция для сохранения данных в файле db.json
 function saveImageData(userId, imageUrl) {
   const dbFilePath = "db.json";
@@ -57,6 +75,37 @@ function saveImageData(userId, imageUrl) {
         return {
           ...user,
           imageUrl,
+        };
+      } else return user;
+    }),
+  };
+
+  // Записываем обновленные данные обратно в файл
+  fs.writeFileSync(dbFilePath, JSON.stringify(newData, null, 2), "utf8");
+}
+
+// Функция для сохранения данных в файле db.json
+function saveImageAvatar(userId, avatarImageUrl) {
+  const dbFilePath = "db.json";
+  let data = {};
+
+  try {
+    // Пытаемся прочитать существующие данные из файла
+    const existingData = fs.readFileSync(dbFilePath, "utf8");
+    data = JSON.parse(existingData);
+  } catch (error) {
+    // Если файл не существует или возникла ошибка при чтении, создаем пустой объект
+    data = {};
+  }
+
+  // Обновляем данные в объекте
+  const newData = {
+    ...data,
+    users: data?.users?.map((user) => {
+      if (user.id === Number(userId)) {
+        return {
+          ...user,
+          avatarImageUrl,
         };
       } else return user;
     }),

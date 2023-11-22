@@ -13,6 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
+import FileDrop from '../FileDrop';
 
 export const pictures = [
     {
@@ -33,6 +34,7 @@ export interface IUser {
     birthDate?: Date | string;
     isOnline?: boolean;
     imageUrl?: string;
+    avatarImageUrl?: string;
 }
 
 export interface IPost {
@@ -65,6 +67,13 @@ const Header = ({ isShowSearch = false, user }: Props) => {
         navigate('/')
     }
 
+    const sendImageAvatar = (files: Blob) => {
+        const formData = new FormData();
+        formData.append('filedata', files)
+        
+        axios.post(`http://localhost:3003/upload-avatar?userId=${user?.id}`, formData)
+    }
+
     return (
         <div className="component-header">
             <div className="container component-header__container">
@@ -83,10 +92,12 @@ const Header = ({ isShowSearch = false, user }: Props) => {
                 {user && (
                     <>
                         <div onClick={handleClick}>
-                            <Avatar className="component-header__avatar">
-                                {user?.name ? user?.name[0] : ''}
-                                {user?.lastName ? user?.lastName[0] : ''}
-                            </Avatar>
+                            <FileDrop onSendFiles={sendImageAvatar} >
+                                <Avatar src={`uploads/${user.avatarImageUrl}`} className="component-header__avatar">
+                                    {user?.name ? user?.name[0] : ''}
+                                    {user?.lastName ? user?.lastName[0] : ''}
+                                </Avatar>
+                            </FileDrop>
                         </div>
                         <Menu
                             id="basic-menu"
