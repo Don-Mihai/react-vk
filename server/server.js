@@ -85,6 +85,7 @@ function saveImageData(userId, imageUrl) {
 }
 
 // Функция для сохранения данных в файле db.json
+
 function saveImageAvatar(userId, avatarImageUrl) {
   const dbFilePath = "db.json";
   let data = {};

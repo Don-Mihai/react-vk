@@ -8,6 +8,7 @@ import { Avatar, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { decrement, increment } from '../../redux/Counter';
+import { Menu } from '../../components/Menu/index';
 
 const initialUser: IUser = {
     id: 0,
@@ -65,15 +66,7 @@ const EditProfile = ({}) => {
                         {count}
                         <button onClick={onReduce}>-</button>
                     </div>
-                    <Button variant="text" startIcon={<CloudUploadIcon />}>
-                        Upload file
-                    </Button>
-                    <Button variant="text" startIcon={<CloudUploadIcon />}>
-                        Upload file
-                    </Button>
-                    <Button variant="text" startIcon={<CloudUploadIcon />}>
-                        Upload file
-                    </Button>
+                    <Menu></Menu>
                 </nav>
                 <div className="page-edit__content">
                     <div className="page-edit__background">
