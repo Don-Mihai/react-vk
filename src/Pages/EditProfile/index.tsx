@@ -10,7 +10,7 @@ import { RootState } from '../../redux/store';
 import { decrement, increment } from '../../redux/Counter';
 import { Menu } from '../../components/Menu/index';
 
-const initialUser: IUser = {
+export const initialUser: IUser = {
     id: 0,
     name: '',
     lastName: '',

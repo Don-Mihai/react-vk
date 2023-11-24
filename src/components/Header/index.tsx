@@ -35,6 +35,7 @@ export interface IUser {
     isOnline?: boolean;
     imageUrl?: string;
     avatarImageUrl?: string;
+    gallery?: any[];
 }
 
 export interface IPost {

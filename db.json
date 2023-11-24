@@ -7,7 +7,21 @@
       "email": "mihai807@mail.ru",
       "birthDate": "19.11.1999",
       "imageUrl": "linii_temnyj_fon_67093_1024x768.jpg",
-      "avatarImageUrl": "MVboPVr-ezw.jpg"
+      "avatarImageUrl": "MVboPVr-ezw.jpg",
+      "gallery": [
+        {
+          "galleryUrl": "028.jpg",
+          "date": "1700678513809"
+        },
+        {
+          "galleryUrl": "456083747.jfif",
+          "date": "1700678520261"
+        },
+        {
+          "galleryUrl": "300px-Samurai_with_sword.jpg",
+          "date": "1700678525864"
+        }
+      ]
     },
     {
       "name": "Артос",

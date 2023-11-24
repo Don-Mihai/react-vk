@@ -11,6 +11,7 @@ import Posts from "./components/Posts";
 import EditProfile from "./Pages/EditProfile";
 import {store} from './redux/store';
 import { Provider } from 'react-redux'
+import Gallery from "./Pages/Gallery";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
   {
     path: "edit",
     element: <EditProfile />,
+  },
+  {
+    path: "gallery",
+    element: <Gallery />,
   },
 ]);
 

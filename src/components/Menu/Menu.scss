@@ -5,3 +5,8 @@ font-size: 13px;
 color: black;
 font-family: Roboto, sans-serif;
 }
+
+.menu-component {
+    display: flex;
+    flex-direction: column;
+}

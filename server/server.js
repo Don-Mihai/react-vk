@@ -28,8 +28,7 @@ app.post(
     else {
       // Сохраняем путь до изображения в файле db.json
       console.log("userId", userId);
-      saveImageData(userId, filedata.filename);
-
+      saveData(userId, "imageUrl", filedata.filename);
       res.send(filedata.filename);
     }
   },
@@ -46,74 +45,64 @@ app.post(
     else {
       // Сохраняем путь до изображения в файле db.json
       console.log("userId", userId);
-      saveImageAvatar(userId, filedata.filename);
+      saveData(userId, "avatarImageUrl", filedata.filename);
 
       res.send(filedata.filename);
     }
   },
 );
 
-// Функция для сохранения данных в файле db.json
-function saveImageData(userId, imageUrl) {
+app.post(
+  "/upload-photos-gallery",
+  multer({ storage: storageConfig }).single("filedata"),
+  async function (req, res) {
+    let filedata = req.file;
+    let userId = req.query?.userId;
+    let date = req.query?.date;
+
+    if (!filedata) res.send("Ошибка при загрузке файла");
+    else {
+      // Сохраняем путь до изображения в файле db.json
+      console.log("userId", userId);
+      saveData(userId, "gallery", [{ galleryUrl: filedata.filename, date }]);
+      res.send(filedata.filename);
+    }
+  },
+);
+
+function saveData(userId, propertyKey, propertyValue) {
   const dbFilePath = "db.json";
-  let data = {};
+  let fileData = {};
 
   try {
     // Пытаемся прочитать существующие данные из файла
     const existingData = fs.readFileSync(dbFilePath, "utf8");
-    data = JSON.parse(existingData);
+    fileData = JSON.parse(existingData);
   } catch (error) {
     // Если файл не существует или возникла ошибка при чтении, создаем пустой объект
-    data = {};
+    fileData = {};
   }
 
   // Обновляем данные в объекте
-  const newData = {
-    ...data,
-    users: data?.users?.map((user) => {
-      if (user.id === Number(userId)) {
-        return {
-          ...user,
-          imageUrl,
-        };
-      } else return user;
-    }),
-  };
+  fileData.users = fileData.users.map((user) => {
+    if (user.id === Number(userId)) {
+      let newValue = propertyValue;
+      if (Array.isArray(user[propertyKey]) && Array.isArray(propertyValue)) {
+        // Если свойство - это массив, добавляем новые данные к существующему массиву
+        newValue = [...user[propertyKey], ...propertyValue];
+      }
+
+      return {
+        ...user,
+        [propertyKey]: newValue,
+      };
+    } else {
+      return user;
+    }
+  });
 
   // Записываем обновленные данные обратно в файл
-  fs.writeFileSync(dbFilePath, JSON.stringify(newData, null, 2), "utf8");
-}
-
-// Функция для сохранения данных в файле db.json
-
-function saveImageAvatar(userId, avatarImageUrl) {
-  const dbFilePath = "db.json";
-  let data = {};
-
-  try {
-    // Пытаемся прочитать существующие данные из файла
-    const existingData = fs.readFileSync(dbFilePath, "utf8");
-    data = JSON.parse(existingData);
-  } catch (error) {
-    // Если файл не существует или возникла ошибка при чтении, создаем пустой объект
-    data = {};
-  }
-
-  // Обновляем данные в объекте
-  const newData = {
-    ...data,
-    users: data?.users?.map((user) => {
-      if (user.id === Number(userId)) {
-        return {
-          ...user,
-          avatarImageUrl,
-        };
-      } else return user;
-    }),
-  };
-
-  // Записываем обновленные данные обратно в файл
-  fs.writeFileSync(dbFilePath, JSON.stringify(newData, null, 2), "utf8");
+  fs.writeFileSync(dbFilePath, JSON.stringify(fileData, null, 2), "utf8");
 }
 
 app.listen(3003, () => {
