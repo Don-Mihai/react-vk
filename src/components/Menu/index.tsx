@@ -27,6 +27,10 @@ export const Menu = () => {
                 <Button>Фотографии</Button>
             </Link>
 
+            <Link to={'/video-gallery'}>
+                <Button>Видео</Button>
+            </Link>
+
             <Link to={'/music'}>
                 <Button>Музыка</Button>
             </Link>

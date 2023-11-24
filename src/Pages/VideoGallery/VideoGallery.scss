@@ -1,0 +1,20 @@
+.videos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Создаем 3 колонки с равной шириной
+    gap: 20px; // Устанавливаем промежуток между элементами грида
+}
+
+.video {
+    width: 100%; // Ширина элемента занимает всю доступную ширину колонки
+    aspect-ratio: 16/9; // Задаем соотношение сторон для видео 16:9
+    background-color: #f0f0f0; // Задаем фоновый цвет для элементов грида (замените на свой)
+    overflow: hidden; // Обрезаем видео, если оно не помещается в элементе
+}
+
+
+.page-gallery__video-input {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}

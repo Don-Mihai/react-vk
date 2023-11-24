@@ -26,6 +26,11 @@ export const pictures = [
     },
 ];
 
+export interface IVideo {
+    id: number;
+    url: string;
+}
+
 export interface IUser {
     id: number;
     name: string;
@@ -36,6 +41,7 @@ export interface IUser {
     imageUrl?: string;
     avatarImageUrl?: string;
     gallery?: any[];
+    videoGallery?: string[];
 }
 
 export interface IPost {
