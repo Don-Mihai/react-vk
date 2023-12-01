@@ -25,7 +25,6 @@ const Gallery = () => {
     const sendImageGallery = (files: Blob) => {
         const formData = new FormData();
         formData.append('filedata', files)
-        
         axios.post(`http://localhost:3003/upload-photos-gallery?userId=${user?.id}&date=${Date.now()}`, formData)
     }
     

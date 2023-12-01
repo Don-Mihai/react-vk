@@ -48,6 +48,8 @@ export interface IPost {
     id: number;
     title: string;
     text: string;
+    createTime?: string;
+    user: IUser;
 }
 
 interface Props {

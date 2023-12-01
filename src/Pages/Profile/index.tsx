@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Profile.scss';
 import Header, { IPost, IUser } from '../../components/Header';
 import axios from 'axios';
@@ -9,20 +9,44 @@ import { Avatar, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Post from '../../components/Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { decrement, increment } from '../../redux/Counter';
 import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone'
 import { Menu } from '../../components/Menu/index';
 
 
 const Profile = ({}) => {
+    const [formValues, setFormValues] = useState<any>({});
     const [user, setUser] = useState<IUser>();
     const [posts, setPosts] = useState<IPost[]>([]);
     const [isShow, setIsShow] = useState<boolean>(false);
-    const count = useSelector((state: RootState) => state.counter.value)
+    const [isFocusCreate, setIsFocusCreate] = useState(false);
+    const createPostRef = useRef(null);
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    // Обработчик клика вне календаря
+    const handleClickOutside = (e: any) => {
+        //@ts-ignore
+        if (createPostRef?.current && !createPostRef?.current?.contains(e.target)) {
+            setIsFocusCreate(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const onChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      ) => {
+        setFormValues({
+          ...formValues,
+          [e.target.name]: e.target.value,
+        });
+      };
 
     const getUser = async () => {
         const user: IUser = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
@@ -47,14 +71,6 @@ const Profile = ({}) => {
         navigate('/edit')
     }
 
-    const onAdd = () => {
-        dispatch(increment()) 
-    }
-
-    const onReduce = () => {
-        dispatch(decrement())
-    }
-
     const onEnter = () => {
         setIsShow(true)
     }
@@ -70,26 +86,21 @@ const Profile = ({}) => {
         axios.post(`http://localhost:3003/uploads?userId=${user?.id}`, formData)
     }
 
-    // const handleSendFiles = (files: Blob) => {
-        
-    //     const formData = new FormData();
-    //     formData.append('filedata', files as Blob);
+    const onCreateClick = () => {
+        setIsFocusCreate(true)
+    }
 
-    //     axios.post(BASE_URL + `/uploads?userId=${currentUser.id}`, formData).then(fetchData);
-    // };
+    const createPost = async () => {
+        await axios.post("http://localhost:3001/posts", {...formValues, user});
+        setFormValues({ text: "" });
+        getPosts();
+      };
 
     return (
         <div className="page-profile">
             <Header isShowSearch={true} user={user}></Header>
             <div className="page-profile__container container">
-                <nav className="page-profile__nav">
-                    <div>
-                        <button onClick={onAdd}>+</button>
-                        {count}
-                        <button onClick={onReduce}>-</button>
-                    </div>
-                    <Menu></Menu>
-                </nav>
+                <Menu></Menu>
                 <div className="page-profile__content">
                     <div className="page-profile__background">
                         <div onDragOver={onEnter} onMouseLeave={onLeave} className="page-profile__background-wrap">
@@ -124,10 +135,28 @@ const Profile = ({}) => {
 
                     <div className="page-profile__sub-content">
                         <div className="page-profile__posts">
+                            <div className='create-post' ref={createPostRef} onClick={onCreateClick}>
+                                <TextField
+                                    onChange={onChange}
+                                    value={formValues.text}
+                                    name="text"
+                                    label="Текст для поста"
+                                    multiline={isFocusCreate}
+                                    rows={2}
+                                    variant="outlined"
+                                />
+                                {isFocusCreate && (
+                                    <Button onClick={createPost} variant="contained">
+                                        Опубликовать
+                                    </Button>
+                                )}
+                            </div>
+
                             {posts.map(post => {
                                 return <Post key={post?.id} post={post} />;
                             })}
                         </div>
+
                         <Friends></Friends>
                     </div>
                 </div>
