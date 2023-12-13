@@ -48,7 +48,7 @@ export interface IPost {
     id: number;
     title: string;
     text: string;
-    createTime?: string;
+    createTime: string | Date | number;
     user: IUser;
 }
 

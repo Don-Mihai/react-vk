@@ -52,7 +52,6 @@ const Profile = ({}) => {
         const user: IUser = (await axios.get(`http://localhost:3001/users/${localStorage.getItem('userId')}`))?.data;
 
         setUser(user);
-        
     };
 
     const getPosts = async () => {
@@ -91,10 +90,11 @@ const Profile = ({}) => {
     }
 
     const createPost = async () => {
-        await axios.post("http://localhost:3001/posts", {...formValues, user});
+        await axios.post("http://localhost:3001/posts", {...formValues, createTime: new Date(), user});
         setFormValues({ text: "" });
         getPosts();
       };
+      
 
     return (
         <div className="page-profile">
@@ -152,8 +152,8 @@ const Profile = ({}) => {
                                 )}
                             </div>
 
-                            {posts.map(post => {
-                                return <Post key={post?.id} post={post} />;
+                            {posts.filter((post) => user?.id === post.user.id).sort((a, b) => new Date(b?.createTime).getTime() - new Date(a?.createTime).getTime() ).map(post => {
+                                return <Post key={post?.id} post={post} onUpdate={getPosts} />;
                             })}
                         </div>
 

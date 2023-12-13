@@ -32,7 +32,8 @@
     },
     {
       "name": "Артос",
-      "id": 3
+      "id": 3,
+      "avatarImageUrl": "300px-Samurai_with_sword.jpg"
     },
     {
       "name": "Фёдр",
@@ -77,54 +78,8 @@
   ],
   "posts": [
     {
-      "title": "Первый пост",
-      "text": "Это первая запись в базе данных.",
-      "authorId": 2,
-      "id": 1
-    },
-    {
-      "title": "Первый пост",
-      "text": "привет",
-      "id": 2
-    },
-    {
-      "title": "Первый пост",
-      "text": "ура",
-      "id": 3
-    },
-    {
-      "title": "Первый пост",
-      "text": "Что нибудь еще",
-      "id": 4
-    },
-    {
-      "title": "Первый пост",
-      "text": "Бекон",
-      "id": 5
-    },
-    {
-      "title": "Первый пост",
-      "text": "Михай",
-      "id": 6
-    },
-    {
-      "text": "Аминь",
-      "id": 7
-    },
-    {
-      "textPost": "sdfsdfsdf",
-      "id": 8
-    },
-    {
-      "textPost": "qqqq",
-      "id": 9
-    },
-    {
-      "text": "test",
-      "id": 10
-    },
-    {
-      "text": "qqqqq",
+      "text": "test1",
+      "createTime": "2023-12-08T16:19:54.753Z",
       "user": {
         "id": 1,
         "name": "Mihai",
@@ -155,7 +110,141 @@
           "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl"
         ]
       },
-      "id": 11
+      "id": 1
+    },
+    {
+      "text": "test2",
+      "createTime": "2023-12-08T16:19:57.355Z",
+      "user": {
+        "id": 1,
+        "name": "Mihai",
+        "lastName": "Palienko",
+        "email": "mihai807@mail.ru",
+        "birthDate": "19.11.1999",
+        "imageUrl": "linii_temnyj_fon_67093_1024x768.jpg",
+        "avatarImageUrl": "MVboPVr-ezw.jpg",
+        "gallery": [
+          {
+            "galleryUrl": "028.jpg",
+            "date": "1700678513809"
+          },
+          {
+            "galleryUrl": "456083747.jfif",
+            "date": "1700678520261"
+          },
+          {
+            "galleryUrl": "300px-Samurai_with_sword.jpg",
+            "date": "1700678525864"
+          }
+        ],
+        "videoGallery": [
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl"
+        ]
+      },
+      "id": 2
+    },
+    {
+      "text": "test3",
+      "createTime": "2023-12-08T16:20:01.352Z",
+      "user": {
+        "id": 1,
+        "name": "Mihai",
+        "lastName": "Palienko",
+        "email": "mihai807@mail.ru",
+        "birthDate": "19.11.1999",
+        "imageUrl": "linii_temnyj_fon_67093_1024x768.jpg",
+        "avatarImageUrl": "MVboPVr-ezw.jpg",
+        "gallery": [
+          {
+            "galleryUrl": "028.jpg",
+            "date": "1700678513809"
+          },
+          {
+            "galleryUrl": "456083747.jfif",
+            "date": "1700678520261"
+          },
+          {
+            "galleryUrl": "300px-Samurai_with_sword.jpg",
+            "date": "1700678525864"
+          }
+        ],
+        "videoGallery": [
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl"
+        ]
+      },
+      "id": 3
+    },
+    {
+      "text": "test4",
+      "createTime": "2023-12-08T16:40:46.083Z",
+      "user": {
+        "id": 1,
+        "name": "Mihai",
+        "lastName": "Palienko",
+        "email": "mihai807@mail.ru",
+        "birthDate": "19.11.1999",
+        "imageUrl": "linii_temnyj_fon_67093_1024x768.jpg",
+        "avatarImageUrl": "MVboPVr-ezw.jpg",
+        "gallery": [
+          {
+            "galleryUrl": "028.jpg",
+            "date": "1700678513809"
+          },
+          {
+            "galleryUrl": "456083747.jfif",
+            "date": "1700678520261"
+          },
+          {
+            "galleryUrl": "300px-Samurai_with_sword.jpg",
+            "date": "1700678525864"
+          }
+        ],
+        "videoGallery": [
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl"
+        ]
+      },
+      "id": 4
+    },
+    {
+      "text": "Я Артос и я люблю махаться на шпагах!",
+      "createTime": "2023-12-08T17:08:50.468Z",
+      "user": {
+        "name": "Артос",
+        "id": 3
+      },
+      "id": 5
+    },
+    {
+      "text": "Люблю махаться!",
+      "createTime": "2023-12-08T17:11:28.695Z",
+      "user": {
+        "name": "Артос",
+        "id": 3,
+        "avatarImageUrl": "300px-Samurai_with_sword.jpg"
+      },
+      "id": 6
+    },
+    {
+      "text": "Шпаги классные!",
+      "createTime": "2023-12-08T17:12:47.364Z",
+      "user": {
+        "name": "Артос",
+        "id": 3,
+        "avatarImageUrl": "300px-Samurai_with_sword.jpg"
+      },
+      "id": 7
     }
   ]
 }

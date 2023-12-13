@@ -7,9 +7,18 @@
     background-color: #fff;
     box-shadow: 0 0 2px #303639;
 
+    &__name {
+        display: flex;
+        gap: 10px;
+    }
+
     &__header {
         display: flex;
         align-items: center;
         gap: 10px;
+    }
+
+    &__settings {
+        margin-left: auto;
     }
 }
