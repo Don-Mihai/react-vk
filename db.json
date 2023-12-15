@@ -246,5 +246,32 @@
       },
       "id": 7
     }
+  ],
+  "likes": [
+    {
+      "id": 2,
+      "idUser": 2,
+      "idPost": 1
+    },
+    {
+      "idPost": 4,
+      "idUser": "1",
+      "id": 3
+    },
+    {
+      "idPost": 2,
+      "idUser": "1",
+      "id": 4
+    },
+    {
+      "idPost": 3,
+      "idUser": "1",
+      "id": 5
+    },
+    {
+      "idPost": 1,
+      "idUser": "1",
+      "id": 6
+    }
   ]
 }
