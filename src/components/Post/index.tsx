@@ -54,6 +54,8 @@ const Post = ({ post, onUpdate }: Props) => {
         
         const like = (await axios.post(`http://localhost:3001/likes`, {idPost: post.id, idUser: localStorage.getItem('userId') })).data
         setIsLiked(like)
+
+        fetchLike()
     }
 
     const handleUnLike = async () => {
@@ -61,6 +63,8 @@ const Post = ({ post, onUpdate }: Props) => {
         await axios.delete(`http://localhost:3001/likes/${isLiked?.id}`)
 
         setIsLiked(null)
+
+        fetchLike()
     }
     
     return (

@@ -254,24 +254,19 @@
       "idPost": 1
     },
     {
-      "idPost": 4,
+      "idPost": 1,
       "idUser": "1",
-      "id": 3
+      "id": 6
     },
     {
       "idPost": 2,
       "idUser": "1",
-      "id": 4
+      "id": 8
     },
     {
-      "idPost": 3,
+      "idPost": 4,
       "idUser": "1",
-      "id": 5
-    },
-    {
-      "idPost": 1,
-      "idUser": "1",
-      "id": 6
+      "id": 9
     }
   ]
 }
