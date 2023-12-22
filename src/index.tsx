@@ -13,6 +13,7 @@ import {store} from './redux/store';
 import { Provider } from 'react-redux'
 import Gallery from "./Pages/Gallery";
 import VideoGallery from "./Pages/VideoGallery";
+import News from "./Pages/News";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
   {
     path: "profile",
     element: <Profile />,
+  },
+  {
+    path: "news",
+    element: <News />,
   },
   {
     path: "posts",

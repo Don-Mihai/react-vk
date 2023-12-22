@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { decrement, increment } from '../../redux/Counter';
 import { Menu } from '../../components/Menu/index';
+import FileDrop from '../../components/FileDrop';
 
 export const initialUser: IUser = {
     id: 0,
@@ -21,7 +22,6 @@ export const initialUser: IUser = {
 const EditProfile = ({}) => {
     const [user, setUser] = useState<IUser>(initialUser);
     const [formValues, setFormValues] = useState<Partial<IUser>>(initialUser)
-    const count = useSelector((state: RootState) => state.counter.value)
 
     const dispatch = useDispatch()
 
@@ -48,12 +48,11 @@ const EditProfile = ({}) => {
     //    getUser()
     }
 
-    const onAdd = () => {
-        dispatch(increment()) 
-    }
-
-    const onReduce = () => {
-        dispatch(decrement())
+    const sendImageAvatar = (files: Blob) => {
+        const formData = new FormData();
+        formData.append('filedata', files)
+        
+        axios.post(`http://localhost:3003/upload-avatar?userId=${user?.id}`, formData)
     }
 
     return (
@@ -61,11 +60,6 @@ const EditProfile = ({}) => {
             <Header isShowSearch={true} user={user}></Header>
             <div className="page-edit__container container">
                 <nav className="page-edit__nav">
-                    <div>
-                        <button onClick={onAdd}>+</button>
-                        {count}
-                        <button onClick={onReduce}>-</button>
-                    </div>
                     <Menu></Menu>
                 </nav>
                 <div className="page-edit__content">
@@ -74,7 +68,14 @@ const EditProfile = ({}) => {
                             <img src='/028.jpg' className="page-edit__background-img" />
                         </div>
                         <div className="page-edit__background-content">
-                            <Avatar sx={{height: '100px', width: '100px'}} ></Avatar>
+                        <FileDrop onSendFiles={sendImageAvatar} >
+                            <Avatar src={`uploads/${user.avatarImageUrl}`} sx={{height: '100px', width: '100px'}} ></Avatar> 
+                         </FileDrop>
+
+                            <div className="page-edit__user-wrap">
+                                <h2 className="page-edit__user-title">{user?.name}</h2>
+                                <h2 className="page-edit__user-title">{user?.lastName}</h2>
+                            </div>
                         </div>
                     </div>
 

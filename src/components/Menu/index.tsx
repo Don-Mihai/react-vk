@@ -11,7 +11,7 @@ export const Menu = () => {
                 <Button>Моя страница</Button>
             </Link>
 
-            <Link to={'/profile'}>
+            <Link to={'/news'}>
                 <Button>Новости</Button>
             </Link>
 

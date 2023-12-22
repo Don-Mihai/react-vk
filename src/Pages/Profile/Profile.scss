@@ -51,10 +51,12 @@
         }
 
         &-wrap {
+            height: 100%;
             position: relative;
             display: flex;
             align-items: center;
             overflow: hidden;
+            border-bottom: 1px solid black;
         }
 
         &-img {

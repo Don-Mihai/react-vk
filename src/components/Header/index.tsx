@@ -76,12 +76,7 @@ const Header = ({ isShowSearch = false, user }: Props) => {
         navigate('/')
     }
 
-    const sendImageAvatar = (files: Blob) => {
-        const formData = new FormData();
-        formData.append('filedata', files)
-        
-        axios.post(`http://localhost:3003/upload-avatar?userId=${user?.id}`, formData)
-    }
+    
 
     return (
         <div className="component-header">
@@ -101,12 +96,10 @@ const Header = ({ isShowSearch = false, user }: Props) => {
                 {user && (
                     <>
                         <div onClick={handleClick}>
-                            <FileDrop onSendFiles={sendImageAvatar} >
-                                <Avatar src={`uploads/${user.avatarImageUrl}`} className="component-header__avatar">
-                                    {user?.name ? user?.name[0] : ''}
-                                    {user?.lastName ? user?.lastName[0] : ''}
-                                </Avatar>
-                            </FileDrop>
+                            <Avatar src={`uploads/${user.avatarImageUrl}`} className="component-header__avatar">
+                                {user?.name ? user?.name[0] : ''}
+                                {user?.lastName ? user?.lastName[0] : ''}
+                            </Avatar>
                         </div>
                         <Menu
                             id="basic-menu"

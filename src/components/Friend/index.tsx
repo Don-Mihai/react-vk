@@ -9,7 +9,7 @@ interface Props {
 const Friend = ({friend}: Props) => {
   return (
     <div className="friend">
-      <Avatar sx={{height: '60px', width: '60px'}}>{friend.name[0]}</Avatar>
+      <Avatar src={`uploads/${friend?.avatarImageUrl}`} sx={{height: '60px', width: '60px'}}>{friend.name[0]}</Avatar>
       <h2 className="friend__name">{friend.name}</h2>
     </div>
   );

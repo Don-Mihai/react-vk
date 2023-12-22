@@ -121,7 +121,7 @@ const Profile = ({}) => {
                         </div>
 
                         <div className="page-profile__background-content">
-                            <Avatar className="page-profile__background-avatar" sx={{ height: '100px', width: '100px' }}></Avatar>
+                            <Avatar src={`uploads/${user?.avatarImageUrl}`} className="page-profile__background-avatar" sx={{ height: '100px', width: '100px' }}></Avatar>
                             <div className="page-profile__user-wrap">
                                 <h2 className="page-profile__user-title">{user?.name}</h2>
                                 <h2 className="page-profile__user-title">{user?.lastName}</h2>

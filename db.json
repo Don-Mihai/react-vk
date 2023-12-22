@@ -222,7 +222,8 @@
       "createTime": "2023-12-08T17:08:50.468Z",
       "user": {
         "name": "Артос",
-        "id": 3
+        "id": 3,
+        "avatarImageUrl": "300px-Samurai_with_sword.jpg"
       },
       "id": 5
     },
@@ -267,6 +268,16 @@
       "idPost": 4,
       "idUser": "1",
       "id": 9
+    },
+    {
+      "idPost": 2,
+      "idUser": "3",
+      "id": 10
+    },
+    {
+      "idPost": 7,
+      "idUser": "3",
+      "id": 11
     }
   ]
 }

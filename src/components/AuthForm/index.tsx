@@ -6,11 +6,14 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { IUser } from "../Header";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../redux/UserSlice";
+import { useDispatch } from "react-redux";
 
 const AuthForm = ({}) => {
   const [inputText, setInputText] = useState<string>("");
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
     const onAuth = async () => {
       const users: IUser[] = (await axios.get('http://localhost:3001/users')).data
@@ -19,6 +22,7 @@ const AuthForm = ({}) => {
 
       if (foundedUser) {
         localStorage.setItem('userId', String(foundedUser.id))
+        dispatch(setUser(foundedUser))
         navigate('profile')
       }
     };
