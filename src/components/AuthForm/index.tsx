@@ -27,6 +27,10 @@ const AuthForm = ({}) => {
       }
     };
 
+    const send = () => {
+      axios.post('http://localhost:3003/test?user=1', {name: inputText})
+  }
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setInputText(e.target.value);
   };
@@ -48,7 +52,7 @@ const AuthForm = ({}) => {
           }}
         />
 
-      <Button onClick={onAuth} variant="contained" >Войти</Button>
+      <Button onClick={send} variant="contained" >Войти</Button>
     </div>
   );
 };
