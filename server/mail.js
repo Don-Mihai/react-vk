@@ -1,8 +1,8 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 const FROM_MAIL = 'mihai807@mail.ru';
 
-const sendEmail = (to, subject, html) => {
+export const sendEmail = (to, subject, html) => {
     const transporter = nodemailer.createTransport({
         host: 'smtp.mail.ru', // Замените на адрес SMTP-сервера вашего почтового провайдера
         port: 465, // Замените на порт вашего SMTP-сервера
@@ -30,5 +30,3 @@ const sendEmail = (to, subject, html) => {
         }
     });
 };
-
-module.exports = sendEmail;

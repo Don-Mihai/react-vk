@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
+
 
 // Замените 'YOUR_BOT_TOKEN' на ваш токен бота
 const BOT_TOKEN = '6847252164:AAGDgDFEJdxEkjzhliq72OVTEtHFOrqOp24';
@@ -7,7 +8,7 @@ const BOT_TOKEN = '6847252164:AAGDgDFEJdxEkjzhliq72OVTEtHFOrqOp24';
 const CHAT_ID = '839884715';
 
 // Функция для отправки сообщения
-async function sendMessage(message) {
+export async function sendMessage(message) {
   const apiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
   
   const params = {
@@ -30,5 +31,3 @@ async function sendMessage(message) {
     console.error('Ошибка при отправке сообщения:', error);
   }
 }
-
-module.exports = sendMessage;
