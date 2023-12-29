@@ -8,13 +8,24 @@ import axios from 'axios';
 const Register = () => {
 
     
+	const send = () => {
+		const payload = {
+			name: 'Миша',
+			text: 'Сколько это всё стоит?'
+		}
+
+		axios.post('http://localhost:3003/telegram', payload)
+
+	}
 
     return (
         <div className="register">
             <Header></Header>
             <div className="register__vk">
                 <div className="register__content">VK for mobile devices</div>
-                {/* <button onClick={send}>Отправить запрос</button> */}
+
+                <button onClick={send}>Отправить запрос</button>
+
                 <div className="register__wrapper">
                     <AuthForm></AuthForm>
                     <RegisterForm></RegisterForm>
