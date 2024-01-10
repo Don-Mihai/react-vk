@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import {sendEmail} from './mail.js';
-import {sendMessage} from './telegram.js';
-
+import { sendEmail } from "./mail.js";
+import { sendMessage } from "./telegram.js";
 
 const app = express();
 
@@ -13,28 +12,19 @@ app.post("/letter", (req, res) => {
   const name = req.body.name;
   const text = req.body.text;
 
-	sendEmail()
+  sendEmail();
 
-  res.send({message: 'отправлено'});
+  res.send({ message: "отправлено" });
 });
-
-
 
 app.post("/telegram", (req, res) => {
   const name = req.body.name;
   const text = req.body.text;
 
-	sendMessage(text)
+  sendMessage(text);
 
-  res.send({message: 'отправлено'});
+  res.send({ message: "отправлено" });
 });
-
-
-
-
-
-
-
 
 app.listen(3003, () => {
   console.log("Server is running on port 3003");
