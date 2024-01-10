@@ -27,10 +27,6 @@ const AuthForm = ({}) => {
       }
     };
 
-    const send = () => {
-      axios.post('http://localhost:3003/test?user=1', {name: inputText})
-  }
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setInputText(e.target.value);
   };
@@ -40,20 +36,22 @@ const AuthForm = ({}) => {
   };
 
   return (
-    <div className="component-auth-form">
-      <h2 className="component-auth-form__title">Вход Вконтакте</h2>
-      <TextField
-          onChange={onChange}
-          value={inputText}
-          label="Имя"
-          variant="filled"
-          InputProps={{
-            endAdornment: <ClearIcon onClick={onClearInput} />,
-          }}
-        />
+      <div className="component-auth-form">
+          <h2 className="component-auth-form__title">Вход Вконтакте</h2>
+          <TextField
+              onChange={onChange}
+              value={inputText}
+              label="Имя"
+              variant="filled"
+              InputProps={{
+                  endAdornment: <ClearIcon onClick={onClearInput} />,
+              }}
+          />
 
-      <Button onClick={send} variant="contained" >Войти</Button>
-    </div>
+          <Button onClick={onAuth} variant="contained">
+              Войти
+          </Button>
+      </div>
   );
 };
 
