@@ -400,6 +400,86 @@
         "avatarImageUrl": "300px-Samurai_with_sword.jpg"
       },
       "id": 3
+    },
+    {
+      "text": "Я артос",
+      "createDate": "2024-01-12T15:55:18.504Z",
+      "sender": {
+        "name": "Артос",
+        "id": 3,
+        "avatarImageUrl": "300px-Samurai_with_sword.jpg"
+      },
+      "recipient": {
+        "id": 1,
+        "name": "Mihai",
+        "lastName": "Palienko",
+        "email": "mihai807@mail.ru",
+        "birthDate": "19.11.1999",
+        "imageUrl": "linii_temnyj_fon_67093_1024x768.jpg",
+        "avatarImageUrl": "MVboPVr-ezw.jpg",
+        "gallery": [
+          {
+            "galleryUrl": "028.jpg",
+            "date": "1700678513809"
+          },
+          {
+            "galleryUrl": "456083747.jfif",
+            "date": "1700678520261"
+          },
+          {
+            "galleryUrl": "300px-Samurai_with_sword.jpg",
+            "date": "1700678525864"
+          }
+        ],
+        "videoGallery": [
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl"
+        ]
+      },
+      "id": 4
+    },
+    {
+      "text": "а я михай",
+      "createDate": "2024-01-12T16:08:53.923Z",
+      "sender": {
+        "id": 1,
+        "name": "Mihai",
+        "lastName": "Palienko",
+        "email": "mihai807@mail.ru",
+        "birthDate": "19.11.1999",
+        "imageUrl": "linii_temnyj_fon_67093_1024x768.jpg",
+        "avatarImageUrl": "MVboPVr-ezw.jpg",
+        "gallery": [
+          {
+            "galleryUrl": "028.jpg",
+            "date": "1700678513809"
+          },
+          {
+            "galleryUrl": "456083747.jfif",
+            "date": "1700678520261"
+          },
+          {
+            "galleryUrl": "300px-Samurai_with_sword.jpg",
+            "date": "1700678525864"
+          }
+        ],
+        "videoGallery": [
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl",
+          "https://www.youtube.com/embed/d-eJfuQ7l2M?si=kj3Uo8QJoIhudXvl"
+        ]
+      },
+      "recipient": {
+        "name": "Артос",
+        "id": 3,
+        "avatarImageUrl": "300px-Samurai_with_sword.jpg"
+      },
+      "id": 5
     }
   ]
 }

@@ -77,8 +77,20 @@ export default function Chat({ open, handleClose }: Props) {
 
     const getMessages = async () => {
         const userId = localStorage.getItem('userId');
-        const messages = (await axios.get(`http://localhost:3001/messages?sender.id=${userId}&recipient.id=${currentRecipient.id}`)).data;
-        setMessages(messages);
+        const messages = (await axios.get(`http://localhost:3001/messages?sender.id=${currentRecipient.id}&recipient.id=${userId}`)).data;
+        const messagesAdd = (await axios.get(`http://localhost:3001/messages?sender.id=${userId}&recipient.id=${currentRecipient.id}`)).data;
+        setMessages([...messages, ...messagesAdd]);
+    };
+
+    const userType = (user: any) => {
+        if (String(user.id) === localStorage.getItem('userId')) {
+            return 'isMe';
+        }
+        if (currentRecipient.id === user.id) {
+            return 'active';
+        }
+
+        return '';
     };
 
     return (
@@ -98,7 +110,7 @@ export default function Chat({ open, handleClose }: Props) {
                     <div className="chat__users">
                         {users.map(user => {
                             return (
-                                <div onClick={() => onUserClick(user)} className="chat__user">
+                                <div onClick={() => onUserClick(user)} className={`chat__user ${userType(user)}`}>
                                     {user?.name}
                                 </div>
                             );
@@ -107,9 +119,15 @@ export default function Chat({ open, handleClose }: Props) {
 
                     <div className="messages">
                         <h1>{currentRecipient.name}</h1>
-                        {messages.map(message => {
-                            return <div className="message">{message.text}</div>;
-                        })}
+                        {messages
+                            .sort((a, b) => new Date(a.createDate).getTime() - new Date(b.createDate).getTime())
+                            .map(message => {
+                                return (
+                                    <div className={String(message.sender.id) === localStorage.getItem('userId') ? 'message message--my' : 'message'}>
+                                        {message.text}
+                                    </div>
+                                );
+                            })}
 
                         <TextField
                             sx={{ marginTop: 'auto' }}

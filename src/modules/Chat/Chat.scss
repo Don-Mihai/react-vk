@@ -12,6 +12,14 @@
 	&__user {
 		padding: 20px;
 		border-bottom: 1px solid grey;
+
+		&.active {
+			background-color: #b0e0fc;
+		}
+
+		&.isMe {
+			background-color: #90f2d1;
+		}
 	}
 }
 
