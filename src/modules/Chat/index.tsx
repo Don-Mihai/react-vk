@@ -32,10 +32,15 @@ export default function Chat({ open, handleClose }: Props) {
     const [formValues, setFormValues] = useState<any>({});
     const [users, setUsers] = useState<any[]>([]);
     const [currentRecipient, setCurrentRecipient] = useState<any>({});
+	const [messages, setMessages] = useState<any[]>([]);
 
     useEffect(() => {
         getUsers();
     }, []);
+
+    useEffect(() => {
+        getMessages();
+    }, [currentRecipient.id]);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormValues({
@@ -57,6 +62,7 @@ export default function Chat({ open, handleClose }: Props) {
             };
             await axios.post('http://localhost:3001/messages', payload);
             setFormValues({});
+            getMessages();
         }
     };
 
@@ -67,6 +73,12 @@ export default function Chat({ open, handleClose }: Props) {
 
     const onUserClick = (user: any) => {
         setCurrentRecipient(user);
+    };
+
+    const getMessages = async () => {
+        const userId = localStorage.getItem('userId');
+        const messages = (await axios.get(`http://localhost:3001/messages?sender.id=${userId}&recipient.id=${currentRecipient.id}`)).data;
+        setMessages(messages);
     };
 
     return (
@@ -95,8 +107,10 @@ export default function Chat({ open, handleClose }: Props) {
 
                     <div className="messages">
                         <h1>{currentRecipient.name}</h1>
-                        <div className="message">Привет, это моё первое сообщение!</div>
-                        <div className="message message--my">Мы никого не ждали, уходите отсюда!</div>
+                        {messages.map(message => {
+                            return <div className="message">{message.text}</div>;
+                        })}
+
                         <TextField
                             sx={{ marginTop: 'auto' }}
                             id="input-with-icon-textfield"
