@@ -13,6 +13,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SendIcon from '@mui/icons-material/Send';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Howl, Howler } from 'howler';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -21,6 +22,13 @@ const Transition = React.forwardRef(function Transition(
     ref: React.Ref<unknown>
 ) {
     return <Slide direction="up" ref={ref} {...props} />;
+});
+
+Howler.volume(1.0);
+
+const sound = new Howl({
+    src: ['./message.mp3'], // Путь к вашему звуковому файлу
+    volume: 1.0, // Громкость (от 0 до 1)
 });
 
 interface Props {
@@ -32,7 +40,7 @@ export default function Chat({ open, handleClose }: Props) {
     const [formValues, setFormValues] = useState<any>({});
     const [users, setUsers] = useState<any[]>([]);
     const [currentRecipient, setCurrentRecipient] = useState<any>({});
-	const [messages, setMessages] = useState<any[]>([]);
+    const [messages, setMessages] = useState<any[]>([]);
 
     useEffect(() => {
         getUsers();
@@ -40,6 +48,12 @@ export default function Chat({ open, handleClose }: Props) {
 
     useEffect(() => {
         getMessages();
+    }, [currentRecipient.id]);
+
+    useEffect(() => {
+        const id = setInterval(getMessages, 2000);
+
+        return () => clearInterval(id);
     }, [currentRecipient.id]);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -63,6 +77,7 @@ export default function Chat({ open, handleClose }: Props) {
             await axios.post('http://localhost:3001/messages', payload);
             setFormValues({});
             getMessages();
+            sound.play();
         }
     };
 
